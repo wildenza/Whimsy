@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, useRef} from 'react';
 import {Button, Text, View, StyleSheet, Pressable} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -6,6 +6,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import {Canvas} from "@react-three/fiber/native";
 import { useFrame } from '@react-three/fiber/native';
 import Model from "./src/components/Model.tsx";
+import useControls from "r3f-native-orbitcontrols"
+import { OrbitControls } from '@react-three/drei'
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -31,22 +33,15 @@ function SettingsScreen({ navigation }) {
   return (
       <View style={styles.container}>
         <View style={styles.content}>
-          {/*<Text>Settings Screen</Text>
+          <Text>Settings Screen</Text>
           <Button
               title="Go back"
               onPress={() => {
                 navigation.goBack();
               }}
-          />*/}
+          />
 
-            {/*<Canvas>
-                <mesh>
-                    <sphereGeometry />
-                    <meshStandardMaterial color='orange' />
 
-                </mesh>
-
-            </Canvas>*/}
 
 
 
@@ -55,18 +50,51 @@ function SettingsScreen({ navigation }) {
   );
 }
 
+/*const Cube = () => {
+    const cubeRef = useRef();
 
+    // useFrame used = rotate on each frame
+    useFrame(() => {
+
+        cubeRef.current.rotation.x += 0.01;
+        cubeRef.current.rotation.y += 0.01;
+        cubeRef.current.rotation.z += 0.01;
+    });
+
+    return (
+        <mesh ref={cubeRef}>
+            <boxGeometry args={[3, 3, 3]} />
+            <meshStandardMaterial color='orange' />
+            <ambientLight intensity={3} color='orange' />
+            <pointLight intensity={100} color='green' />
+
+        </mesh>
+    );
+};*/
 
 
 
 function RenderScrn({ navigation }) {
-  return (
+    const [OrbitControls, events] = useControls()
+
+    return (
     <View style={styles.containerbase}>
-        <View style={styles.modelcontainer}>
+
+        <View style={styles.modelcontainer}{...events}>
+
             <Canvas>
+                <OrbitControls enablePan={false} />
+                <directionalLight position={[1,0,0]} args={['white',5]}/>
+                <directionalLight position={[-1,0,0]} args={['white',5]}/>
+                <directionalLight position={[0,1,0]} args={['white',5]}/>
+                <directionalLight position={[0,-1,0]} args={['white',5]}/>
+                <directionalLight position={[0,0,1]} args={['white',5]}/>
+                <directionalLight position={[0,0,-1]} args={['white',5]}/>
                 <Suspense fallback={null}>
                     <Model />
                 </Suspense>
+                {/*<Cube />*/}
+
             </Canvas>
         </View>
 
