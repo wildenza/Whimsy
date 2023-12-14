@@ -1,4 +1,5 @@
-![BG](https://github.com/wildenza/Whimsy/assets/117548573/5ebe7ab5-150d-4d6b-a9a4-24062806a88c)
+
+![BG2](https://github.com/wildenza/Whimsy/assets/117548573/8c305f61-66a0-4443-a001-0194526c9424)
 
 
 
