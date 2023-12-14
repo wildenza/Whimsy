@@ -7,6 +7,7 @@ import React from "react";
 import { useGLTF } from "@react-three/drei/native";
 import { GLTF } from "three-stdlib";
 
+
 type GLTFResult = GLTF & {
     nodes: {
         w_1: THREE.Mesh;
@@ -20,12 +21,12 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
     const { nodes, materials } = useGLTF(require('../assets/Shield2.glb')) as GLTFResult;
 
     return (
-        <group {...props} dispose={null} >
+        <group {...props} dispose={null} scale={7} position={[0,-1.5,0]} >
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.w_1.geometry}
-                material={materials.kalkan}
+                material={null}
             />
         </group>
     );

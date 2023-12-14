@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
 import {Canvas} from "@react-three/fiber/native";
-import Model from "./src/components/Model";
+import { useFrame } from '@react-three/fiber/native';
+import Model from "./src/components/Model.tsx";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -30,13 +31,25 @@ function SettingsScreen({ navigation }) {
   return (
       <View style={styles.container}>
         <View style={styles.content}>
-          <Text>Settings Screen</Text>
+          {/*<Text>Settings Screen</Text>
           <Button
               title="Go back"
               onPress={() => {
                 navigation.goBack();
               }}
-          />
+          />*/}
+
+            {/*<Canvas>
+                <mesh>
+                    <sphereGeometry />
+                    <meshStandardMaterial color='orange' />
+
+                </mesh>
+
+            </Canvas>*/}
+
+
+
         </View>
       </View>
   );
@@ -48,35 +61,42 @@ function SettingsScreen({ navigation }) {
 
 function RenderScrn({ navigation }) {
   return (
-      <View style={styles.containerRender}>
-        <View style={styles.modelContainer}>
-            <Canvas style={{position: 'absolute'}}>
-
+    <View style={styles.containerbase}>
+        <View style={styles.modelcontainer}>
+            <Canvas>
                 <Suspense fallback={null}>
                     <Model />
                 </Suspense>
             </Canvas>
-
         </View>
-            <View style={styles.bottomContainer}>
-                <View style={styles.textContainer}>
-                <Text style={styles.textTitle}>Unit 1 : Human Kings-guard</Text>
-                <Text style={styles.textDesc}>typical human warrior capabilities,native to the Leyhart Empire</Text>
-                </View>
+
+
+        <View style={styles.bottomCntr}>
+            <View style={styles.textContainer}>
+            <Text style={styles.textTitle}>Title</Text>
+            <Text style={styles.textDesc}>Ramidaf igwim osdf ield imsdmfi mmasliriwenimimdsdf fosidmf oimsdfim</Text>
             </View>
+            <View style={styles.buttonContainer}>
+                <Pressable style={styles.button} onPress={() => console.log("Next")}>
+                    <Text style={styles.textButton}>Next Button</Text>
+                </Pressable>
+            </View>
+        </View>
 
 
 
 
-          <View style={styles.btnContainer}>
-              <Pressable style={styles.NextButton} onPress={ ()=> console.log('NXT')}>
-                  <Text style={styles.textNextButton}> Next </Text>
 
-              </Pressable>
 
-          </View>
 
-      </View>
+
+
+
+
+
+    </View>
+
+
   );
 }
 
@@ -123,21 +143,23 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    containerRender: {
+    containerbase: {
         flex:1,
         backgroundColor:'orange',
-        justifyContent:'center',
-        alignItems:'center'
     },
-    modelContainer: {
-        top:'75%',
-        flex:1,
+    modelcontainer: {
+
+        flex:2,
+        display : 'flex',
+        border : `1px solid red`,
+        /*height: 400,*/
         backgroundColor:'wheat',
         width:'100%',
-        alignItems:'center',
-        justifyContent:'center',
+        //alignItems:'center',
+        //justifyContent:'center',
         borderTopLeftRadius:30,
         borderTopRightRadius:30,
+        margin : `0 auto`
 
 
 
@@ -160,42 +182,43 @@ const styles = StyleSheet.create({
     textDesc: {
         fontSize:20,
         fontWeight:'bold',
-        color:'white',
+        color:'black',
         marginVertical: 10,
 
     },
 
-    NextButton:{
-      backgroundColor:'white',
-        padding:18,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:24,
-        top:'-350%',
+    button:{
+        backgroundColor: 'white',
+        padding: 18,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 24
 
 
     },
-    textNextButton:{
+    textButton:{
       color:'black',
       fontSize:18,
       fontWeight:'bold',
 
 
     },
-    /*btnContainer:{
-    marginHorizontal:20,
-        marginBottom:20,
-        backgroundColor:'red',
+    btnContainer:{
+        marginHorizontal: 20,
+        marginBottom: 20,
 
 
-    },*/
 
-    bottomContainer: {
+    },
+
+
+    bottomCntr: {
         flex:1,
-        backgroundColor:'wheat',
+        backgroundColor:'orange',
         bottom:1,
         borderTopLeftRadius:30,
         borderTopRightRadius:30,
+        justifyContent:'space-between',
 
 
     },
@@ -212,6 +235,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
-    marginTop: 20,
+    marginHorizontal:20,
+      marginBottom:20,
   },
 });
