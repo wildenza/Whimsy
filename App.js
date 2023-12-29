@@ -8,6 +8,7 @@ import { useFrame } from '@react-three/fiber/native';
 import Model from "./src/components/Model.tsx";
 import useControls from "r3f-native-orbitcontrols"
 import { OrbitControls } from '@react-three/drei'
+import Room1 from "./src/components/Room1";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -84,16 +85,21 @@ function RenderScrn({ navigation }) {
 
             <Canvas>
                 <OrbitControls enablePan={false} />
-                <directionalLight position={[1,0,0]} args={['white',5]}/>
-                <directionalLight position={[-1,0,0]} args={['white',5]}/>
-                <directionalLight position={[0,1,0]} args={['white',5]}/>
-                <directionalLight position={[0,-1,0]} args={['white',5]}/>
+                <directionalLight position={[1,0,0]} args={['white',3]}/>
+                <directionalLight position={[-1,0,0]} args={['teal',4]}/>
+                <directionalLight position={[0,1,0]} args={['white',3.5]}/>
+                {/*<directionalLight position={[0,-1,0]} args={['white',5]}/>
                 <directionalLight position={[0,0,1]} args={['white',5]}/>
-                <directionalLight position={[0,0,-1]} args={['white',5]}/>
-                <Suspense fallback={null}>
+                <directionalLight position={[0,0,-1]} args={['white',5]}/>*/}
+               {/* <Suspense fallback={null}>
                     <Model />
+                </Suspense>*/}
+
+                <Suspense fallback={null}>
+                    <Room1/>
                 </Suspense>
-                {/*<Cube />*/}
+
+
 
             </Canvas>
         </View>
@@ -101,12 +107,13 @@ function RenderScrn({ navigation }) {
 
         <View style={styles.bottomCntr}>
             <View style={styles.textContainer}>
-            <Text style={styles.textTitle}>Title</Text>
-            <Text style={styles.textDesc}>Ramidaf igwim osdf ield imsdmfi mmasliriwenimimdsdf fosidmf oimsdfim</Text>
+            <Text style={styles.textTitle}>Room Viewer</Text>
+            <Text style={styles.textDesc}>This is a random 3D object which as it seems manages succesfully
+            to appear on your humble phone screen</Text>
             </View>
             <View style={styles.buttonContainer}>
                 <Pressable style={styles.button} onPress={() => console.log("Next")}>
-                    <Text style={styles.textButton}>Next Button</Text>
+                    <Text style={styles.textButton}>Next</Text>
                 </Pressable>
             </View>
         </View>
@@ -196,10 +203,15 @@ const styles = StyleSheet.create({
       margin:20,
         marginBottom:0,
 
+        alignItems:'center',
+
+
 
     },
 
     textTitle:{
+        justifyContent:'center',
+        alignItems:'center',
         fontSize: 28,
         color: 'black',
         fontWeight: 'bold',
