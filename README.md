@@ -17,6 +17,7 @@ Also all of the files use the same atlas.
 
 
 The Api used : NPS Gov Database, which has a generous number of Parks & Trails from the US
+cr:Rakha-Wibowo(modelw tuts)
 <div align="center">
   <img src="https://github.com/wildenza/Whimsy/assets/117548573/88278cd3-18ad-41fb-8d4a-a5651435c0c2" alt="ezgif com-video-to-gif-converter">
 </div>
